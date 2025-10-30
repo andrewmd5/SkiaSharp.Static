@@ -12,7 +12,7 @@ runs:
       shell: nu {0}
       run: |
         mkdir skiasharp $env.BuildDir
-        
+
         # Create architecture-specific args.gn
         let args_content = (open args.gn)
         let arch_specific = $args_content | str replace 'target_cpu = "x64"' $'target_cpu = "${{ inputs.arch }}"'
