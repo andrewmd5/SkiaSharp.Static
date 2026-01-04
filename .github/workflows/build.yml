@@ -68,9 +68,11 @@ jobs:
           let count = (git rev-list --count HEAD | into int)
           let hash = (git rev-parse --short HEAD)
           let build = $"($count).($hash)"
+          let version = $"($env.SkiaSharpVersion).($count)"
           [
               $"BuildVersion=($build)"
-              $"PackageName=CoreUtils.SkiaSharp.Static.($env.SkiaSharpVersion)-($build)"
+              $"PackageVersion=($version)"
+              $"PackageName=CoreUtils.SkiaSharp.Static.($version)"
           ] | str join (char newline) | save --append $env.GITHUB_ENV
 
       - name: Download x64 libs
@@ -113,7 +115,7 @@ jobs:
           cp libs/arm64/libHarfBuzzSharp.lib nuget-staging/runtimes/win-arm64/native/
           cp libs/arm64/libHarfBuzzSharp.pdb nuget-staging/runtimes/win-arm64/native/
 
-          dotnet pack nuget/SkiaSharp.Static.csproj -p:version=$"($env.SkiaSharpVersion)-($env.BuildVersion)" -p:NuGetStagingDir=$"($env.GITHUB_WORKSPACE)/nuget-staging" -o .
+          dotnet pack nuget/SkiaSharp.Static.csproj -p:version=$"($env.PackageVersion)" -p:NuGetStagingDir=$"($env.GITHUB_WORKSPACE)/nuget-staging" -o .
 
       - uses: ./.github/actions/deploy
         with:
