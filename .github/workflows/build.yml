@@ -100,8 +100,8 @@ jobs:
       - name: Create NuGet package
         shell: nu {0}
         run: |
-          mkdir -p nuget-staging/runtimes/win-x64/native
-          mkdir -p nuget-staging/runtimes/win-arm64/native
+          mkdir nuget-staging/runtimes/win-x64/native
+          mkdir nuget-staging/runtimes/win-arm64/native
 
           cp libs/x64/skia.lib nuget-staging/runtimes/win-x64/native/
           cp libs/x64/SkiaSharp.lib nuget-staging/runtimes/win-x64/native/
