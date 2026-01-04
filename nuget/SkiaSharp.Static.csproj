@@ -6,13 +6,13 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageId>2ndLAB.SkiaSharp.Static</PackageId>
+        <PackageId>CoreUtils.SkiaSharp.Static</PackageId>
         <Version>3.119.0</Version>
-        <Authors>2ndLAB</Authors>
+        <Authors>CoreUtils</Authors>
         <Description>SkiaSharp static library for Avalonia</Description>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/2ndlab/SkiaSharp.Static</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/2ndlab/SkiaSharp.Static</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/andrewmd5/SkiaSharp.Static</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/andrewmd5/SkiaSharp.Static</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
