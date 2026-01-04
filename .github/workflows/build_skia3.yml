@@ -12,13 +12,10 @@ defaults:
 
 env:
   SkiaSharpVersion: 3.119.0
+
 jobs:
   build:
     runs-on: windows-2025
-    permissions:
-      id-token: write
-      attestations: write
-      contents: write
     strategy:
       matrix:
         arch: [x64, arm64]
@@ -32,6 +29,92 @@ jobs:
       - uses: ./.github/actions/build
         with:
           arch: ${{ matrix.arch }}
+
+      - name: Upload libs
+        uses: actions/upload-artifact@v4
+        with:
+          name: libs-${{ matrix.arch }}
+          path: |
+            ${{ env.BuildDir }}/skia.lib
+            ${{ env.BuildDir }}/SkiaSharp.lib
+            ${{ env.BuildDir }}/libHarfBuzzSharp.lib
+            ${{ env.BuildDir }}/libHarfBuzzSharp.pdb
+
+      - name: Upload 7z archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: archives-${{ matrix.arch }}
+          path: |
+            ${{ env.SkiaSharpName }}.7z
+            ${{ env.HarfBuzzSharpName }}.7z
+
+  package:
+    needs: build
+    runs-on: windows-2025
+    permissions:
+      id-token: write
+      attestations: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hustcer/setup-nu@main
+        with:
+          version: "*"
+
+      - name: Setup build info
+        shell: nu {0}
+        run: |
+          let count = (git rev-list --count HEAD | into int)
+          let hash = (git rev-parse --short HEAD)
+          let build = $"($count).($hash)"
+          [
+              $"BuildVersion=($build)"
+              $"PackageName=CoreUtils.SkiaSharp.Static.($env.SkiaSharpVersion)-($build)"
+          ] | str join (char newline) | save --append $env.GITHUB_ENV
+
+      - name: Download x64 libs
+        uses: actions/download-artifact@v4
+        with:
+          name: libs-x64
+          path: libs/x64
+
+      - name: Download arm64 libs
+        uses: actions/download-artifact@v4
+        with:
+          name: libs-arm64
+          path: libs/arm64
+
+      - name: Download x64 archives
+        uses: actions/download-artifact@v4
+        with:
+          name: archives-x64
+          path: archives
+
+      - name: Download arm64 archives
+        uses: actions/download-artifact@v4
+        with:
+          name: archives-arm64
+          path: archives
+
+      - name: Create NuGet package
+        shell: nu {0}
+        run: |
+          mkdir -p nuget-staging/runtimes/win-x64/native
+          mkdir -p nuget-staging/runtimes/win-arm64/native
+
+          cp libs/x64/skia.lib nuget-staging/runtimes/win-x64/native/
+          cp libs/x64/SkiaSharp.lib nuget-staging/runtimes/win-x64/native/
+          cp libs/x64/libHarfBuzzSharp.lib nuget-staging/runtimes/win-x64/native/
+          cp libs/x64/libHarfBuzzSharp.pdb nuget-staging/runtimes/win-x64/native/
+
+          cp libs/arm64/skia.lib nuget-staging/runtimes/win-arm64/native/
+          cp libs/arm64/SkiaSharp.lib nuget-staging/runtimes/win-arm64/native/
+          cp libs/arm64/libHarfBuzzSharp.lib nuget-staging/runtimes/win-arm64/native/
+          cp libs/arm64/libHarfBuzzSharp.pdb nuget-staging/runtimes/win-arm64/native/
+
+          dotnet pack nuget/SkiaSharp.Static.csproj -p:version=$"($env.SkiaSharpVersion)-($env.BuildVersion)" -p:NuGetStagingDir=$"($env.GITHUB_WORKSPACE)/nuget-staging" -o .
+
       - uses: ./.github/actions/deploy
         with:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
