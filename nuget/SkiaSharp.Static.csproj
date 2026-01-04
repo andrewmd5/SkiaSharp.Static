@@ -22,47 +22,21 @@
 
     <!-- x64 libraries -->
     <ItemGroup>
-        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/libHarfBuzzSharp.lib"
-            Pack="true"
-            PackagePath="runtimes/win-x64/native/">
-            <Link>libHarfBuzzSharp.lib</Link>
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/libHarfBuzzSharp.pdb"
-            Pack="true"
-            PackagePath="runtimes/win-x64/native/">
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/skia.lib"
-            Pack="true"
-            PackagePath="runtimes/win-x64/native/">
-            <Link>skia.lib</Link>
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/SkiaSharp.lib"
-            Pack="true"
-            PackagePath="runtimes/win-x64/native/">
-            <Link>SkiaSharp.lib</Link>
-        </None>
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/skia.lib" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/skia.pdb" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/SkiaSharp.lib" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/SkiaSharp.pdb" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/libHarfBuzzSharp.lib" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-x64/native/libHarfBuzzSharp.pdb" Pack="true" PackagePath="runtimes/win-x64/native/" />
     </ItemGroup>
 
     <!-- arm64 libraries -->
     <ItemGroup>
-        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/libHarfBuzzSharp.lib"
-            Pack="true"
-            PackagePath="runtimes/win-arm64/native/">
-            <Link>libHarfBuzzSharp.lib</Link>
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/libHarfBuzzSharp.pdb"
-            Pack="true"
-            PackagePath="runtimes/win-arm64/native/">
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/skia.lib"
-            Pack="true"
-            PackagePath="runtimes/win-arm64/native/">
-            <Link>skia.lib</Link>
-        </None>
-        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/SkiaSharp.lib"
-            Pack="true"
-            PackagePath="runtimes/win-arm64/native/">
-            <Link>SkiaSharp.lib</Link>
-        </None>
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/skia.lib" Pack="true" PackagePath="runtimes/win-arm64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/skia.pdb" Pack="true" PackagePath="runtimes/win-arm64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/SkiaSharp.lib" Pack="true" PackagePath="runtimes/win-arm64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/SkiaSharp.pdb" Pack="true" PackagePath="runtimes/win-arm64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/libHarfBuzzSharp.lib" Pack="true" PackagePath="runtimes/win-arm64/native/" />
+        <None Include="$(NuGetStagingDir)/runtimes/win-arm64/native/libHarfBuzzSharp.pdb" Pack="true" PackagePath="runtimes/win-arm64/native/" />
     </ItemGroup>
 </Project>
