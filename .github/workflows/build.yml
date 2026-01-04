@@ -36,9 +36,7 @@ jobs:
           name: libs-${{ matrix.arch }}
           path: |
             ${{ env.BuildDir }}/skia.lib
-            ${{ env.BuildDir }}/skia.pdb
             ${{ env.BuildDir }}/SkiaSharp.lib
-            ${{ env.BuildDir }}/SkiaSharp.pdb
             ${{ env.BuildDir }}/libHarfBuzzSharp.lib
             ${{ env.BuildDir }}/libHarfBuzzSharp.pdb
 
@@ -108,16 +106,12 @@ jobs:
           mkdir nuget-staging/runtimes/win-arm64/native
 
           cp libs/x64/skia.lib nuget-staging/runtimes/win-x64/native/
-          cp libs/x64/skia.pdb nuget-staging/runtimes/win-x64/native/
           cp libs/x64/SkiaSharp.lib nuget-staging/runtimes/win-x64/native/
-          cp libs/x64/SkiaSharp.pdb nuget-staging/runtimes/win-x64/native/
           cp libs/x64/libHarfBuzzSharp.lib nuget-staging/runtimes/win-x64/native/
           cp libs/x64/libHarfBuzzSharp.pdb nuget-staging/runtimes/win-x64/native/
 
           cp libs/arm64/skia.lib nuget-staging/runtimes/win-arm64/native/
-          cp libs/arm64/skia.pdb nuget-staging/runtimes/win-arm64/native/
           cp libs/arm64/SkiaSharp.lib nuget-staging/runtimes/win-arm64/native/
-          cp libs/arm64/SkiaSharp.pdb nuget-staging/runtimes/win-arm64/native/
           cp libs/arm64/libHarfBuzzSharp.lib nuget-staging/runtimes/win-arm64/native/
           cp libs/arm64/libHarfBuzzSharp.pdb nuget-staging/runtimes/win-arm64/native/
 
