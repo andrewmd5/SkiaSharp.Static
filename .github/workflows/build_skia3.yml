@@ -33,3 +33,5 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
       - uses: ./.github/actions/deploy
+        with:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
