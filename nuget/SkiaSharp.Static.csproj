@@ -23,21 +23,21 @@
     <ItemGroup>
         <None Include="$(BuildDir)/libHarfBuzzSharp.lib"
             Pack="true"
-            PackagePath="runtimes/win-x64/native/">
+            PackagePath="runtimes/win-$(TargetArch)/native/">
             <Link>libHarfBuzzSharp.lib</Link>
         </None>
         <None Include="$(BuildDir)/libHarfBuzzSharp.pdb"
             Pack="true"
-            PackagePath="runtimes/win-x64/native/">
+            PackagePath="runtimes/win-$(TargetArch)/native/">
         </None>
         <None Include="$(BuildDir)/skia.lib"
             Pack="true"
-            PackagePath="runtimes/win-x64/native/">
+            PackagePath="runtimes/win-$(TargetArch)/native/">
             <Link>skia.lib</Link>
         </None>
         <None Include="$(BuildDir)/SkiaSharp.lib"
             Pack="true"
-            PackagePath="runtimes/win-x64/native/">
+            PackagePath="runtimes/win-$(TargetArch)/native/">
             <Link>SkiaSharp.lib</Link>
         </None>
     </ItemGroup>

@@ -3,9 +3,14 @@
     <PropertyGroup>
         <_SkiaSharpStaticRoot>$(MSBuildThisFileDirectory)../</_SkiaSharpStaticRoot>
     </PropertyGroup>
-    <ItemGroup Condition="'$(PublishAot)' == 'true'">
+    <ItemGroup Condition="'$(PublishAot)' == 'true' And '$(RuntimeIdentifier)' == 'win-x64'">
         <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-x64/native/libHarfBuzzSharp.lib" />
         <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-x64/native/skia.lib" />
         <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-x64/native/SkiaSharp.lib" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(PublishAot)' == 'true' And '$(RuntimeIdentifier)' == 'win-arm64'">
+        <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-arm64/native/libHarfBuzzSharp.lib" />
+        <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-arm64/native/skia.lib" />
+        <NativeLibrary Include="$(_SkiaSharpStaticRoot)runtimes/win-arm64/native/SkiaSharp.lib" />
     </ItemGroup>
 </Project>
